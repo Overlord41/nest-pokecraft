@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+// import { MongooseModule } from '@nestjs/mongoose';
 import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      process.env.MONGODB || 'mongodb://localhost:27017/nest-pokemon',
-    ),
+    // MongooseModule.forRoot(
+    //   process.env.MONGODB || 'mongodb://localhost:27017/nest-pokemon',
+    // ),
     PokemonModule,
   ],
   controllers: [],
