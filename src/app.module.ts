@@ -5,7 +5,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGODB || 'mongodb://localhost:27017/nest-pokemon',
+      'mongodb+srv://pokemondb_user:mj0tzEiGprvS3lUm@pokemoncluster.hmtu2dh.mongodb.net/nest-pokemon',
     ),
     PokemonModule,
   ],
