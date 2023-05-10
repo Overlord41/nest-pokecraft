@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(
+      process.env.MONGODB || 'mongodb://localhost:27017/nest-pokemon',
+    ),
+    PokemonModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
