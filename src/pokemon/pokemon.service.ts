@@ -14,7 +14,7 @@ export class PokemonService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+    return `This action returns a #${id} pokemon ${process.env.MONGODB}`;
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
