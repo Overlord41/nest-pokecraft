@@ -5,8 +5,8 @@ import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 @Injectable()
 export class PokemonService {
   create(createPokemonDto: CreatePokemonDto) {
-    // return 'This action adds a new pokemon';
-    return `Esta es la conección a la db ${process.env.MONGODB}`;
+    return 'This action adds a new pokemon';
+    // return `Esta es la conección a la db ${process.env.MONGODB}`;
   }
 
   findAll() {

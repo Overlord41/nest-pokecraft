@@ -5,10 +5,10 @@ import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    MongooseModule.forRoot(process.env.MONGODB),
+    // ConfigModule.forRoot({
+    //   isGlobal: true,
+    // }),
+    // MongooseModule.forRoot(process.env.MONGODB),
     PokemonModule,
   ],
   controllers: [],
