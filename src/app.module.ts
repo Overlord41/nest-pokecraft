@@ -8,9 +8,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot(
-      'mongodb+srv://pokemondb_user:mj0tzEiGprvS3lUm@pokemoncluster.hmtu2dh.mongodb.net/nest-pokemon',
-    ),
+    MongooseModule.forRoot(process.env.MONGODB),
     PokemonModule,
   ],
   controllers: [],
