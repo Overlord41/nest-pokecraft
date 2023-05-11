@@ -14,7 +14,12 @@ export class PokemonService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pokemon ${process.env.MONGODB}`;
+    if (+process.env.PORT === 3000) {
+      return 'Si existe la variable de entorno';
+    } else {
+      return `No existe la variable de entorno`;
+      // return `This action returns a #${id} pokemon`;
+    }
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
