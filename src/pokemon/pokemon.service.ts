@@ -5,7 +5,8 @@ import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 @Injectable()
 export class PokemonService {
   create(createPokemonDto: CreatePokemonDto) {
-    return 'This action adds a new pokemon';
+    createPokemonDto.name = createPokemonDto.name.toLocaleLowerCase();
+    return { createPokemonDto };
     // return `Esta es la conección a la db ${process.env.MONGODB}`;
   }
 
@@ -14,12 +15,7 @@ export class PokemonService {
   }
 
   findOne(id: number) {
-    if (+process.env.PORT === 3000) {
-      return 'Si existe la variable de entorno';
-    } else {
-      return `No existe la variable de entorno`;
-      // return `This action returns a #${id} pokemon`;
-    }
+    return `This action returns a #${id} pokemon`;
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
