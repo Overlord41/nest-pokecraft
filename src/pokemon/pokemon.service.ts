@@ -19,7 +19,7 @@ export class PokemonService {
   }
 
   findAll() {
-    return `This action returns all pokemon`;
+    return `This action returns all pokemon actually`;
   }
 
   findOne(id: number) {
