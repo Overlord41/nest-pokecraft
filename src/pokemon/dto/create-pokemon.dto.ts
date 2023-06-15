@@ -12,7 +12,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-class EvolutionDto {
+export class EvolutionDto {
   @IsInt()
   @IsPositive()
   @Min(1)
@@ -26,7 +26,7 @@ class EvolutionDto {
   image: string;
 }
 
-class FilesPokemonDto {
+export class FilesPokemonDto {
   @IsUrl()
   image: string;
 
