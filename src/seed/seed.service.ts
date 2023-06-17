@@ -1,17 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import axios, { AxiosInstance } from 'axios';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
+import { Pokemon } from 'src/pokemon/entities/pokemon.entity';
 import { PokeResponse } from './interfaces/poke-response.interface';
 
 @Injectable()
 export class SeedService {
-  private readonly axios: AxiosInstance = axios;
+  constructor(
+    @InjectModel(Pokemon.name)
+    private readonly pokemonModel: Model<Pokemon>,
+
+    private readonly http: AxiosAdapter,
+  ) {}
   async executeSeed() {
-    const pokePromises = [];
-    for (let i = 1; i <= 3; i++) {
+    await this.pokemonModel.deleteMany();
+    const pokePromises: number[] = [];
+    for (let i = 1; i <= 10; i++) {
       pokePromises.push(i);
     }
     const newPromises = pokePromises.map((el) =>
-      this.axios.get<PokeResponse>(`https://pokeapi.co/api/v2/pokemon/${el}`),
+      this.http.get<PokeResponse>(`https://pokeapi.co/api/v2/pokemon/${el}`),
     );
 
     const infoPokemons = await Promise.allSettled(newPromises);
@@ -23,16 +32,22 @@ export class SeedService {
     const selectedPokes = pokefilter.map((elem) => {
       if (elem.status === 'fulfilled') {
         return {
-          no: elem.value.data.id,
-          namePokemon: elem.value.data.name,
-          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${elem.value.data.id}.png`,
-          types: elem.value.data.types.map((el) => el.type.name),
-          generation: this.pokeEvolution(+elem.value.data.id),
+          no: elem.value.id,
+          name: elem.value.name,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${elem.value.id}.png`,
+          types: elem.value.types.map((el) => el.type.name),
+          generation: this.pokeEvolution(+elem.value.id),
         };
       }
     });
 
-    return selectedPokes;
+    try {
+      await this.pokemonModel.insertMany(selectedPokes);
+      return `Seed executed successfully`;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException(`Error - Check logs`);
+    }
   }
 
   pokeEvolution(num: number) {
