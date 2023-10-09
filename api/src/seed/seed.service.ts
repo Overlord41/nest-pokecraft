@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AxiosAdapter } from '../common/adapters/axios.adapter';
-import { Pokemon } from 'src/pokemon/entities/pokemon.entity';
+import { Pokemon } from '../pokemon/entities/pokemon.entity';
 import { PokeResponse } from './interfaces/poke-response.interface';
 
 @Injectable()
