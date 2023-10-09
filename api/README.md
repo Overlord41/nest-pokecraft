@@ -30,6 +30,7 @@ docker-compose up -d
 5. Reconstruir la base de datos con la semilla
 
 ```
+La semilla llenará 10 elementos
 http://localhost:3000/api/v2/seed
 ```
 
