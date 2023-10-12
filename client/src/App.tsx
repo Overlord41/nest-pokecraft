@@ -1,7 +1,14 @@
 import './App.css'
+import { Add } from './components/Add'
+import { List } from './components/List'
 
 function App() {
-  return <>Nueva App creada</>
+  return (
+    <div>
+      <Add />
+      <List />
+    </div>
+  )
 }
 
 export default App
