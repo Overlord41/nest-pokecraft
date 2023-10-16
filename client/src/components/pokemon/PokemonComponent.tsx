@@ -67,6 +67,7 @@ export const PokemonComponent = () => {
     <div className="grid grid-cols-4 gap-4">
       {listPokemons.map((pokemon) => (
         <CardPokemon
+          key={pokemon.no}
           no={pokemon.no}
           name={pokemon.name}
           urlImage={pokemon.image}
