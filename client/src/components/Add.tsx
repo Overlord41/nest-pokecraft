@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { addPerson, fetchPoke } from '../store/features/personSlice'
-import { appUseDispatch } from '../store/store'
+import { addPerson, fetchPoke } from '../redux/features/personSlice'
+import { appUseDispatch } from '../redux/store'
 
 export const Add = () => {
   const name = useRef<string>('')

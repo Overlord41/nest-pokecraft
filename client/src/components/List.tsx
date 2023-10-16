@@ -1,4 +1,4 @@
-import { appUseSelector } from '../store/store'
+import { appUseSelector } from '../redux/store'
 
 export const List = () => {
   const persons = appUseSelector((state) => state.person.persons)

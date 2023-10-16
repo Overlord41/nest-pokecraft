@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #eeeeee;
+}
+
+.bg-custom-background-normal {
+  background-image: url('./images/pokeCards/bgpokecard.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.bokeball-charge {
+  background-image: url('./images/pokeCards/pokeball.png');
+}
+
+.font-pixel {
+  font-family: 'Pixelify Sans', sans-serif;
+}
