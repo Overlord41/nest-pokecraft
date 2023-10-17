@@ -1,17 +1,17 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Add } from './components/Add'
 import { List } from './components/List'
 import { PokemonComponent } from './components/pokemon/PokemonComponent'
-import { fetchPoke } from './redux/features/pokemonSlice'
-import { appUseDispatch } from './redux/store'
+// import { fetchPoke } from './redux/features/pokemonSlice'
+// import { appUseDispatch } from './redux/store'
 
 function App() {
-  const dispatch = appUseDispatch()
-  useEffect(() => {
-    dispatch(fetchPoke())
-  }, [])
+  // const dispatch = appUseDispatch()
+  // useEffect(() => {
+  //   dispatch(fetchPoke())
+  // }, [])
   return (
-    <div className="flex items-center">
+    <div>
       <Add />
       <List />
       <h1 className="font-bold underline text-xs">Welcome to PokeCraft!</h1>

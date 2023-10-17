@@ -7,7 +7,19 @@ body {
 }
 
 .bg-custom-background-normal {
-  background-image: url('./images/pokeCards/bgpokecard.webp');
+  background-image: url('./images/pokeCards/bgpokecardnormal.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-custom-background-grass {
+  background-image: url('./images/pokeCards/bgpokecardgrass.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-custom-background-water {
+  background-image: url('./images/pokeCards/bgpokecardwater.webp');
   background-size: cover;
   background-position: center;
 }

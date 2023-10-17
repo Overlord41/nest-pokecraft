@@ -13,6 +13,10 @@ export const CardPokemon = ({
   isLoading,
   typesPoke,
 }: infoPokemon) => {
+  // const styleBG = {
+  //   backgroundImage = classBackound,
+  // }
+
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer rounded-lg shadow-md bg-white  group h-72 w-72 p-3 hover:bg-blue-100 hover:shadow-lg">
       <div className="aboslute w-full h-0">
@@ -21,7 +25,7 @@ export const CardPokemon = ({
         </div>
       </div>
       <div
-        className={`bg-cover bg-no-repeat h-full w-full flex items-end justify-center rounded-md bg-[url(./images/pokeCards/bgpokecard${typesPoke[0]}.webp)]`}
+        className={`bg-custom-background-${typesPoke[0]} h-full w-full flex items-end justify-center rounded-md`}
       >
         {!isLoading ? (
           <img
