@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { PokeAPIResponse } from '../../interfaces/pokeApiResponse'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+// import { PokeAPIResponse } from '../../interfaces/pokeApiResponse'
 
 export interface Person {
   id: number
@@ -14,20 +14,6 @@ const initialState: PersonState = {
   persons: [],
 }
 
-export const fetchPoke = createAsyncThunk<{ id: number; name: string }, void>(
-  'person/fetch',
-  async () => {
-    const response = await fetch(
-      'https://nest-pokecraft.vercel.app/api/pokemon/5',
-      {
-        method: 'GET',
-      },
-    )
-    const data: PokeAPIResponse = await response.json()
-    return { id: data.no, name: data.name }
-  },
-)
-
 export const PersonSlice = createSlice({
   name: 'person',
   initialState,
@@ -38,11 +24,6 @@ export const PersonSlice = createSlice({
         name: action.payload.name,
       })
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchPoke.fulfilled, (state, action) => {
-      state.persons.push(action.payload)
-    })
   },
 })
 

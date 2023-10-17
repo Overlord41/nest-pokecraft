@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { addPerson, fetchPoke } from '../redux/features/personSlice'
+import { addPerson } from '../redux/features/personSlice'
 import { appUseDispatch } from '../redux/store'
 
 export const Add = () => {
@@ -27,7 +27,7 @@ export const Add = () => {
       <button
         type="button"
         className="bg-violet-500 text-white rounded-md px-4 cursor-pointer hover:bg-violet-600 active:bg-violet-700"
-        onClick={() => dispatch(fetchPoke())}
+        // onClick={() => dispatch(fetchPoke())}
       >
         Get Api
       </button>

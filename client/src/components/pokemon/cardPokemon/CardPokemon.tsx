@@ -1,16 +1,29 @@
+interface infoPokemon {
+  no: number
+  name: string
+  urlImage: string
+  isLoading: boolean
+  typesPoke: string[]
+}
+
 export const CardPokemon = ({
   no,
   name,
   urlImage,
-}: {
-  no: number
-  name: string
-  urlImage: string
-}) => {
+  isLoading,
+  typesPoke,
+}: infoPokemon) => {
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer rounded-lg shadow-md bg-white  group h-72 w-72 p-3 hover:bg-blue-100 hover:shadow-lg">
-      <div className="bg-cover bg-no-repeat h-full w-full flex items-end justify-center rounded-md bg-[url('./images/pokeCards/bgpokecard.webp')]">
-        {urlImage ? (
+      <div className="aboslute w-full h-0">
+        <div className="relative top-1 left-1 bg-gradient-to-r from-violet-500 to-sky-500 w-10 h-10 rounded-full flex justify-center items-center text-xs font-press-start text-white">
+          {no}
+        </div>
+      </div>
+      <div
+        className={`bg-cover bg-no-repeat h-full w-full flex items-end justify-center rounded-md bg-[url(./images/pokeCards/bgpokecard${typesPoke[0]}.webp)]`}
+      >
+        {!isLoading ? (
           <img
             className="bg-cover bg-no-repeat mb-2 w-2/5 h-2/5 group-hover:scale-125"
             src={urlImage}
@@ -19,7 +32,7 @@ export const CardPokemon = ({
           <div className="bokeball-charge w-1/6 h-1/6 bg-cover bg-center animate-bounce"></div>
         )}
       </div>
-      <div className="font-pixel text-gray-600 text-xl">{`${no} ${name}`}</div>
+      <div className="font-press-start  text-xs mt-1">{name.toUpperCase()}</div>
     </div>
   )
 }

@@ -1,8 +1,15 @@
+import { useEffect } from 'react'
 import { Add } from './components/Add'
 import { List } from './components/List'
 import { PokemonComponent } from './components/pokemon/PokemonComponent'
+import { fetchPoke } from './redux/features/pokemonSlice'
+import { appUseDispatch } from './redux/store'
 
 function App() {
+  const dispatch = appUseDispatch()
+  useEffect(() => {
+    dispatch(fetchPoke())
+  }, [])
   return (
     <div>
       <Add />
