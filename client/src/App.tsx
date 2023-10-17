@@ -14,7 +14,7 @@ function App() {
     <div>
       <Add />
       <List />
-      <h1 className="font-bold underline text-xs">Welcome to Pokemon World!</h1>
+      <h1 className="font-bold underline text-xs">Welcome to PokeCraft!</h1>
       <div className="flex items-center w-full justify-center">
         <PokemonComponent />
       </div>
