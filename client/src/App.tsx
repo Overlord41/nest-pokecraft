@@ -11,7 +11,7 @@ function App() {
     dispatch(fetchPoke())
   }, [])
   return (
-    <div>
+    <div className="flex items-center">
       <Add />
       <List />
       <h1 className="font-bold underline text-xs">Welcome to PokeCraft!</h1>
