@@ -19,6 +19,9 @@ class FilesPokemon {
   @Prop({ required: true, default: 0 })
   pages: number;
 
+  @Prop({ required: true, default: '' })
+  source: string;
+
   @Prop({ required: true, default: false })
   pdo: boolean;
 

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { AxiosAdapter } from '../../common/adapter/axios.adapter'
 import { PokeAPIResponse } from '../../interfaces/pokeApiResponse'
+const urlApiPokecraft = import.meta.env.VITE_URL_API_POKECRAFT
 
 interface interfacePoke {
   data: PokeAPIResponse[]
@@ -14,15 +15,36 @@ const initialState: interfacePoke = {
   isError: false,
 }
 
-export const fetchPoke = createAsyncThunk<PokeAPIResponse[]>(
+interface querysGetPokemons {
+  page: number
+  limit: number
+  order: string
+  type: string
+  generation: number
+}
+
+export const fetchPoke = createAsyncThunk<PokeAPIResponse[], querysGetPokemons>(
   'pokemon/fetch',
-  async () => {
+  async (queryParams) => {
+    const { page = 1, limit = 5, order, type, generation } = queryParams
     const fetching = new AxiosAdapter()
-    const response = await fetching.get<PokeAPIResponse[]>(
-      'https://nest-pokecraft.vercel.app/api/pokemon',
-    )
-    const data: PokeAPIResponse[] = response
-    return data
+    console.log(urlApiPokecraft)
+    let url = `${urlApiPokecraft}?page=${page}&limit=${limit}&order=${order}`
+
+    if (type) {
+      url += `&type=${type}`
+    }
+
+    if (generation) {
+      url += `&generation=${generation}`
+    }
+
+    try {
+      const response = await fetching.get<PokeAPIResponse[]>(url)
+      return response
+    } catch (error) {
+      throw new Error('This is an error - check logs')
+    }
   },
 )
 

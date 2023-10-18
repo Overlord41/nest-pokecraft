@@ -1,15 +1,23 @@
-// import { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Add } from './components/Add'
 import { List } from './components/List'
 import { PokemonComponent } from './components/pokemon/PokemonComponent'
-// import { fetchPoke } from './redux/features/pokemonSlice'
-// import { appUseDispatch } from './redux/store'
+import { fetchPoke } from './redux/features/pokemonSlice'
+import { appUseDispatch } from './redux/store'
 
 function App() {
-  // const dispatch = appUseDispatch()
-  // useEffect(() => {
-  //   dispatch(fetchPoke())
-  // }, [])
+  const dispatch = appUseDispatch()
+  useEffect(() => {
+    dispatch(
+      fetchPoke({
+        page: 1,
+        limit: 10,
+        order: 'asc',
+        type: '',
+        generation: 1,
+      }),
+    )
+  }, [])
   return (
     <div>
       <Add />

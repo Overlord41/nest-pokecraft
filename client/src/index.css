@@ -24,6 +24,22 @@ body {
   background-position: center;
 }
 
+.bg-custom-background-fire {
+  background-image: url('./images/pokeCards/bgpokecardfire.webp');
+  background-size: cover;
+  background-position: center;
+}
+.bg-custom-background-bug {
+  background-image: url('./images/pokeCards/bgpokecardbug.webp');
+  background-size: cover;
+  background-position: center;
+}
+.bg-custom-background-electric {
+  background-image: url('./images/pokeCards/bgpokecardelectric.webp');
+  background-size: cover;
+  background-position: center;
+}
+
 .bokeball-charge {
   background-image: url('./images/pokeCards/pokeball.png');
 }

@@ -13,10 +13,11 @@ export class SeedService {
 
     private readonly http: AxiosAdapter,
   ) {}
-  async executeSeed() {
+  async executeSeed(seedInit: { from: number; to: number }) {
+    const { from, to } = seedInit;
     await this.pokemonModel.deleteMany();
     const pokePromises: number[] = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = from; i <= to; i++) {
       pokePromises.push(i);
     }
     const newPromises = pokePromises.map((el) =>
