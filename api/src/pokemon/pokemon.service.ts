@@ -29,12 +29,31 @@ export class PokemonService {
   }
 
   async findAll(paginationDto: PaginationDto) {
-    const { page = 1, limit = 5 } = paginationDto;
+    const {
+      page = 1,
+      limit = 5,
+      order = 'asc',
+      type,
+      generation,
+    } = paginationDto;
     const skip = (page - 1) * limit;
-    const listPokemons = await this.pokemonModel
-      .find()
+    const sortNew = order === 'asc' ? 1 : -1;
+    const query = this.pokemonModel.find();
+
+    if (type) {
+      // Agregar filtro por tipo si se proporciona un tipo para el filtrado
+      query.where('types').in([type]);
+    }
+
+    if (generation) {
+      // Agregar filtro por generación si se proporciona una generación
+      query.where('generation').equals(generation);
+    }
+
+    const listPokemons = await query
       .skip(skip)
       .limit(limit)
+      .sort({ no: sortNew })
       .exec();
     return listPokemons;
   }
