@@ -31,7 +31,7 @@ export class PokemonService {
   async findAll(paginationDto: PaginationDto) {
     const {
       page = 1,
-      limit = 5,
+      limit = 10,
       order = 'asc',
       type,
       generation,
@@ -39,23 +39,33 @@ export class PokemonService {
     const skip = (page - 1) * limit;
     const sortNew = order === 'asc' ? 1 : -1;
     const query = this.pokemonModel.find();
+    const countQuery = this.pokemonModel.find();
 
     if (type) {
       // Agregar filtro por tipo si se proporciona un tipo para el filtrado
       query.where('types').in([type]);
+      countQuery.where('types').in([type]);
     }
 
     if (generation) {
       // Agregar filtro por generación si se proporciona una generación
       query.where('generation').equals(generation);
+      countQuery.where('generation').equals(generation);
     }
+
+    // Cantidad de pokemon aplicando los filtros de type y generation
+    const totalResults = await countQuery.countDocuments().exec();
 
     const listPokemons = await query
       .skip(skip)
       .limit(limit)
       .sort({ no: sortNew })
       .exec();
-    return listPokemons;
+
+    return {
+      data: listPokemons,
+      totalResults,
+    };
   }
 
   async findOne(term: string) {

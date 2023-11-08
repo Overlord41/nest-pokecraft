@@ -7,6 +7,7 @@ export interface PokeAPIResponse {
   image: string
   generation: number
   types: string[]
+  source: string
   evolutions: string[]
   files: string[]
   __v: number

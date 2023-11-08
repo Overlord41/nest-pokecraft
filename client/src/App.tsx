@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { Add } from './components/Add'
-import { List } from './components/List'
+import { Route, Routes } from 'react-router-dom'
+import Navbar from './components/NavBar'
+
 import { PokemonComponent } from './components/pokemon/PokemonComponent'
 import { fetchPoke } from './redux/features/pokemonSlice'
 import { appUseDispatch } from './redux/store'
@@ -11,7 +12,7 @@ function App() {
     dispatch(
       fetchPoke({
         page: 1,
-        limit: 10,
+        limit: 15,
         order: 'asc',
         type: '',
         generation: 1,
@@ -20,12 +21,10 @@ function App() {
   }, [])
   return (
     <div>
-      <Add />
-      <List />
-      <h1 className="font-bold underline text-xs">Welcome to PokeCraft!</h1>
-      <div className="flex items-center w-full justify-center">
-        <PokemonComponent />
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/pokemon" element={<PokemonComponent />} />
+      </Routes>
     </div>
   )
 }

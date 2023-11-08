@@ -6,40 +6,6 @@ body {
   background-color: #eeeeee;
 }
 
-.bg-custom-background-normal {
-  background-image: url('./images/pokeCards/bgpokecardnormal.webp');
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-custom-background-grass {
-  background-image: url('./images/pokeCards/bgpokecardgrass.webp');
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-custom-background-water {
-  background-image: url('./images/pokeCards/bgpokecardwater.webp');
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-custom-background-fire {
-  background-image: url('./images/pokeCards/bgpokecardfire.webp');
-  background-size: cover;
-  background-position: center;
-}
-.bg-custom-background-bug {
-  background-image: url('./images/pokeCards/bgpokecardbug.webp');
-  background-size: cover;
-  background-position: center;
-}
-.bg-custom-background-electric {
-  background-image: url('./images/pokeCards/bgpokecardelectric.webp');
-  background-size: cover;
-  background-position: center;
-}
-
 .bokeball-charge {
   background-image: url('./images/pokeCards/pokeball.png');
 }
@@ -48,6 +14,97 @@ body {
   font-family: 'Pixelify Sans', sans-serif;
 }
 
+.text-xxs {
+  font-size: 0.5rem /* 12px */;
+  line-height: 0.8rem /* 16px */;
+}
+
 .font-press-start {
   font-family: 'Press Start 2P', sans-serif;
+}
+
+.logo-pokecraft {
+  background-image: url('./images/pokecraft-logo.webp');
+}
+
+/* Background para cards por tipo de pokemon */
+.bg-custom-background-normal {
+  background-image: url('./images/pokeCards/bgpokecardnormal.webp');
+}
+.bg-custom-background-grass {
+  background-image: url('./images/pokeCards/bgpokecardgrass.webp');
+}
+.bg-custom-background-water {
+  background-image: url('./images/pokeCards/bgpokecardwater.webp');
+}
+.bg-custom-background-fire {
+  background-image: url('./images/pokeCards/bgpokecardfire.webp');
+}
+.bg-custom-background-bug {
+  background-image: url('./images/pokeCards/bgpokecardbug.webp');
+}
+.bg-custom-background-electric {
+  background-image: url('./images/pokeCards/bgpokecardelectric.webp');
+}
+.bg-custom-background-poison {
+  background-image: url('./images/pokeCards/bgpokecardpoison.webp');
+}
+.bg-custom-background-ground {
+  background-image: url('./images/pokeCards/bgpokecardground.webp');
+}
+
+/* Iconos para tipos de pokemon */
+.icon-bug {
+  background-image: url('./images/icons/Pokemon_Type_Icon_bug.png');
+}
+.icon-dark {
+  background-image: url('./images/icons/Pokemon_Type_Icon_dark.png');
+}
+.icon-dragon {
+  background-image: url('./images/icons/Pokemon_Type_Icon_dragon.png');
+}
+.icon-electric {
+  background-image: url('./images/icons/Pokemon_Type_Icon_electric.png');
+}
+.icon-fairy {
+  background-image: url('./images/icons/Pokemon_Type_Icon_fairy.png');
+}
+.icon-fighting {
+  background-image: url('./images/icons/Pokemon_Type_Icon_fighting.png');
+}
+.icon-fire {
+  background-image: url('./images/icons/Pokemon_Type_Icon_fire.png');
+}
+.icon-flying {
+  background-image: url('./images/icons/Pokemon_Type_Icon_flying.png');
+}
+.icon-ghost {
+  background-image: url('./images/icons/Pokemon_Type_Icon_ghost.png');
+}
+.icon-grass {
+  background-image: url('./images/icons/Pokemon_Type_Icon_grass.png');
+}
+.icon-ground {
+  background-image: url('./images/icons/Pokemon_Type_Icon_ground.png');
+}
+.icon-ice {
+  background-image: url('./images/icons/Pokemon_Type_Icon_ice.png');
+}
+.icon-normal {
+  background-image: url('./images/icons/Pokemon_Type_Icon_normal.png');
+}
+.icon-poison {
+  background-image: url('./images/icons/Pokemon_Type_Icon_poison.png');
+}
+.icon-psychic {
+  background-image: url('./images/icons/Pokemon_Type_Icon_psychic.png');
+}
+.icon-rock {
+  background-image: url('./images/icons/Pokemon_Type_Icon_rock.png');
+}
+.icon-steel {
+  background-image: url('./images/icons/Pokemon_Type_Icon_steel.png');
+}
+.icon-water {
+  background-image: url('./images/icons/Pokemon_Type_Icon_water.png');
 }

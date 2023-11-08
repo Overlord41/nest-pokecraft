@@ -1,3 +1,5 @@
+import { PokemonIcons } from '../PokemonIcons'
+
 interface infoPokemon {
   no: number
   name: string
@@ -21,7 +23,7 @@ export const CardPokemon = ({
         </div>
       </div>
       <div
-        className={`bg-custom-background-${typesPoke[0]} h-full w-full flex items-end justify-center rounded-md`}
+        className={`bg-custom-background-${typesPoke[0]} bg-cover bg-center h-full w-full flex items-end justify-center rounded-md`}
       >
         {!isLoading ? (
           <img
@@ -33,6 +35,7 @@ export const CardPokemon = ({
         )}
       </div>
       <div className="font-press-start  text-xs mt-1">{name.toUpperCase()}</div>
+      {typesPoke && <PokemonIcons typesPoke={typesPoke} />}
     </div>
   )
 }
