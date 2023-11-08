@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const FilterPokemon: React.FC = () => {
+  console.log('todos los filtros')
   return (
     <div className="flex h-8 my-8">
       <div className="mr-5">
