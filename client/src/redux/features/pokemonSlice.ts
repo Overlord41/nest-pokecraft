@@ -1,21 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AxiosAdapter } from '../../common/adapter/axios.adapter'
 import { PokeAPIResponse } from '../../interfaces/pokeApiResponse'
 const urlApiPokecraft = import.meta.env.VITE_URL_API_POKECRAFT
 
 interface paginateInter {
-  isFirstRender: boolean
   mode: 'light' | 'dark'
   page: number
   limit: number
   order: 'asc' | 'desc'
-  type: string | null
+  type: string
   generation: number
+  totalPages: number
 }
 
 interface interfacePoke {
   data: PokeAPIResponse[]
-  totalResults: number
   isLoading: boolean
   isError: boolean
   paginate: paginateInter
@@ -23,22 +22,21 @@ interface interfacePoke {
 
 interface httpPokeResonse {
   data: PokeAPIResponse[]
-  totalResults: number
+  totalPages: number
 }
 
 const initialState: interfacePoke = {
   data: [],
-  totalResults: 0,
   isLoading: false,
   isError: false,
   paginate: {
-    isFirstRender: false,
     mode: 'light',
     page: 1,
-    limit: 15,
+    limit: 10,
     order: 'asc',
-    type: null,
+    type: '',
     generation: 1,
+    totalPages: 0,
   },
 }
 
@@ -51,14 +49,20 @@ interface querysGetPokemons {
 }
 
 export const fetchPoke = createAsyncThunk<httpPokeResonse, querysGetPokemons>(
-  'pokemon/fetch',
+  'pokemons/fetch',
   async (queryParams) => {
-    const { page = 1, limit = 5, order, type, generation } = queryParams
+    const {
+      page = 1,
+      limit = 10,
+      order = 'asc',
+      type,
+      generation,
+    } = queryParams
     const fetching = new AxiosAdapter()
 
     let url = `${urlApiPokecraft}?page=${page}&limit=${limit}&order=${order}`
 
-    if (type) {
+    if (type && type !== '') {
       url += `&type=${type}`
     }
 
@@ -78,7 +82,30 @@ export const fetchPoke = createAsyncThunk<httpPokeResonse, querysGetPokemons>(
 export const PokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
-  reducers: {},
+  reducers: {
+    setPage: (state, action: PayloadAction<number>) => {
+      state.paginate.page = action.payload
+    },
+    setOrder: (state, action: PayloadAction<string>) => {
+      state.paginate.order = action.payload as 'asc' | 'desc'
+      state.paginate.page = 1
+    },
+    setLimit: (state, action: PayloadAction<number>) => {
+      state.paginate.limit = action.payload
+      state.paginate.page = 1
+    },
+    setType: (state, action: PayloadAction<string>) => {
+      state.paginate.type = action.payload
+      state.paginate.page = 1
+    },
+    restoreInitialState: (state) => {
+      // Restaura el estado inicial
+      state.paginate = {
+        ...state.paginate,
+        ...{ page: 1, limit: 10, order: 'asc', type: '', generation: 1 },
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPoke.pending, (state) => {
@@ -87,14 +114,18 @@ export const PokemonSlice = createSlice({
       })
       .addCase(fetchPoke.fulfilled, (state, action) => {
         state.data = action.payload.data
-        state.totalResults = action.payload.totalResults
+        state.isError = false
         state.isLoading = false
+        state.paginate.totalPages = action.payload.totalPages
       })
       .addCase(fetchPoke.rejected, (state) => {
         state.isError = true
-        state.totalResults = 0
+        state.paginate.totalPages = 0
         state.isLoading = false
       })
   },
 })
+export const { restoreInitialState, setType, setLimit, setPage, setOrder } =
+  PokemonSlice.actions
+
 export default PokemonSlice.reducer

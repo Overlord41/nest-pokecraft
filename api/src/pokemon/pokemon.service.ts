@@ -56,15 +56,19 @@ export class PokemonService {
     // Cantidad de pokemon aplicando los filtros de type y generation
     const totalResults = await countQuery.countDocuments().exec();
 
+    //Cantidad total de páginas
+    const totalPages = Math.ceil(totalResults / limit);
+
     const listPokemons = await query
       .skip(skip)
       .limit(limit)
       .sort({ no: sortNew })
+      .select('_id no name image generation types')
       .exec();
 
     return {
       data: listPokemons,
-      totalResults,
+      totalPages,
     };
   }
 
