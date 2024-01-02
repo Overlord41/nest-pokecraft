@@ -3,6 +3,7 @@ import {
   IsArray,
   IsBoolean,
   IsInt,
+  IsMongoId,
   IsOptional,
   IsPositive,
   IsString,
@@ -13,6 +14,9 @@ import {
 } from 'class-validator';
 
 export class EvolutionDto {
+  @IsMongoId()
+  id: string[];
+
   @IsInt()
   @IsPositive()
   @Min(1)
@@ -21,6 +25,10 @@ export class EvolutionDto {
   @IsString()
   @MinLength(3)
   name: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  types: string[];
 
   @IsUrl()
   image: string;

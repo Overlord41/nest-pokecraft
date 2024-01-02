@@ -62,7 +62,7 @@ export const fetchPoke = createAsyncThunk<httpPokeResonse, querysGetPokemons>(
 
     let url = `${urlApiPokecraft}?page=${page}&limit=${limit}&order=${order}`
 
-    if (type && type !== '') {
+    if (type && type !== '' && type !== 'none') {
       url += `&type=${type}`
     }
 

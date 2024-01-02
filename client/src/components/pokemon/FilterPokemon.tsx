@@ -45,7 +45,11 @@ export const FilterPokemon: React.FC = () => {
     if (typeFilter === 'type') {
       dispatch(setType(e.target.value))
       newFilters.type = e.target.value
-      params.set('type', e.target.value)
+      if (e.target.value !== 'none') {
+        params.set('type', e.target.value)
+      } else {
+        params.delete('type')
+      }
     }
     setParams(params)
     dispatch(fetchPoke(newFilters))
@@ -63,6 +67,7 @@ export const FilterPokemon: React.FC = () => {
   ]
 
   const typesPokemon = [
+    { value: 'none', label: 'None' },
     { value: 'bug', label: 'Bug' },
     { value: 'dark', label: 'Dark' },
     { value: 'dragon', label: 'Dragon' },
@@ -84,7 +89,7 @@ export const FilterPokemon: React.FC = () => {
   ]
 
   return (
-    <div className="flex h-8 my-8">
+    <div className="flex flex-col items-center md:flex-row h-8 my-8">
       <div className="mr-5">
         Type:
         <select
