@@ -8,6 +8,9 @@ import { fetchPoke } from '../../redux/features/pokemonSlice'
 import 'react-responsive-pagination/themes/classic.css'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { setPage } from '../../redux/features/pokemonSlice'
+import { Loader } from '../loader/Loader'
+import { NotFound } from '../notFound/NotFound'
+import { ErrorCompontent } from '../errorComponent/ErrorCompontent'
 
 export const PokemonComponent: React.FC = () => {
   const paginate = appUseSelector((state) => state.pokemon.paginate)
@@ -53,23 +56,31 @@ export const PokemonComponent: React.FC = () => {
   return (
     <div className="flex flex-col items-center w-full justify-center my-6">
       <FilterPokemon />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mb-4">
-        {listPokemons.data.map((pokemon) => (
-          <CardPokemon
-            key={pokemon.no}
-            no={pokemon.no}
-            name={pokemon.name}
-            urlImage={pokemon.image}
-            isLoading={false}
-            typesPoke={pokemon.types}
+      {listPokemons.isLoading && <Loader />}
+      {listPokemons.isError && <ErrorCompontent />}
+      {listPokemons.data.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mb-4">
+            {listPokemons.data.map((pokemon) => (
+              <CardPokemon
+                key={pokemon.no}
+                no={pokemon.no}
+                name={pokemon.name}
+                urlImage={pokemon.image}
+                isLoading={false}
+                typesPoke={pokemon.types}
+              />
+            ))}
+          </div>
+          <ResponsivePagination
+            current={paginate.page}
+            total={paginate.totalPages}
+            onPageChange={onChangePage}
           />
-        ))}
-      </div>
-      <ResponsivePagination
-        current={paginate.page}
-        total={paginate.totalPages}
-        onPageChange={onChangePage}
-      />
+        </>
+      ) : (
+        <NotFound />
+      )}
     </div>
   )
 }

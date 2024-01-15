@@ -89,7 +89,7 @@ export const FilterPokemon: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col items-center md:flex-row h-8 my-8">
+    <div className="flex flex-col items-center md:flex-row md:h-8 my-8">
       <div className="mr-5">
         Type:
         <select
